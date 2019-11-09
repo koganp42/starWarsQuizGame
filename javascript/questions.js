@@ -1,14 +1,15 @@
 var questions = [
     {
-      title: "Commonly used data types DO NOT include:",
-      choices: ["strings", "booleans", "alerts", "numbers"],
-      answer: "alerts"
+      title: "What does AT-AT stand for?",
+      choices: ["All Terrain-Attack Transport", "All Terrain-Armored Transport", "Armored Troop-Attack Transporter", "Always Take-A Towel"],
+      answer: "All Terrain-Armored Transport"
     },
     {
-      title: "The condition in an if / else statement is enclosed within ____.",
-      choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-      answer: "parentheses"
+      title: "What planet is home to Chewbacca and the Wookies?",
+      choices: ["Endor", "Kashyyk", "Dagobah", "Aldorran"],
+      answer: "Kashyyk"
     },
+
     ///etc.
   ];
   
