@@ -2,7 +2,7 @@ let quizEl = document.querySelector("#quiz");
 let quizButton = document.querySelector("#quizStart");
 let timerEl = document.querySelector("#timer");
 let interval;
-let timeLeft = 5;
+let timeLeft = 150;
 
 function startQuiz(){
     interval = setInterval(countdown, 1000);
