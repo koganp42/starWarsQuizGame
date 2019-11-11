@@ -2,7 +2,7 @@ const questions = [
     {
       title: "What does AT-AT stand for?",
       choices: ["All Terrain-Attack Transport", "All Terrain-Armored Transport", "Armored Troop-Attack Transporter", "Always Take-A Towel"],
-      answer: "B: All Terrain-Armored Transport"
+      answer: "All Terrain-Armored Transport"
     },
     {
       title: "What planet is home to Chewbacca and the Wookies?",
