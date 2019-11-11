@@ -3,3 +3,15 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+/* #quizBody {
+    background-image: url("./images/SWXwingHangarBay.png")
+} */
+    
+#quizBody {
+    min-height: 200px;
+}
+
+/* #timer {
+    color: whitesmoke;
+}  */

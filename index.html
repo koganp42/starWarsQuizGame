@@ -11,26 +11,30 @@
 </head>
 
 <body>
-    <div class="container text-center bg-white">
-
-        <header class="col-6">
+    <header class="d-flex justify-content-center">
+        <span class="text-no-wrap">
             <h1>Star Wars: A Quiz From Far Far Away</h1>
-        </header>
-
-        <div class="container">
-            <div id="timer">Timer</div>
-        </div>
-
-        <div class="container" id="quiz">
-            <div class="row col-6">
+        </span>
+    </header>
+    
+    <div class="container bg-light col-6" id="quizBody">
+        <div class="d-flex flex-row-reverse" id="timer">Timer</div>
+        
+        <div class="d-flex flex-row justify-content-center" id="quiz">
+            <div>
                 <h3>Test your Star Wars knowledge!</h3>
-                <button id="quizStart">Start</button>
+                <p>Answer 10 questions about the Star Wars universe as quickly as possible! Be careful though: wrong answers will result in 10 seconds being subtracted from your remaining time!</p>
+                <button class="float-right" id="quizStart">Start</button>
             </div>
+        </div>
+        <div class="container" id="quizResults">
+
         </div>
 
     </div>
-    <script src="/starWarsQuizGame/javascript/main.js"></script>
-    <script src="/starWarsQuizGame/javascript/questions.js"></script>
+
+    <script src="./javascript/questions.js"></script>
+    <script src="./javascript/main.js"></script>
 </body>
 
 </html>
