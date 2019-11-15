@@ -9,8 +9,11 @@ body {
 } */
     
 #quizBody {
-    min-height: 200px;
+    min-height: 400px;
+    background-image: url("/starWarsQuizGame/assets/images/Questions_Background.jpg");
+    background-size: cover;
 }
+
 
 /* #timer {
     color: whitesmoke;
