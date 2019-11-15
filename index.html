@@ -13,35 +13,44 @@
 <body>
     <header class="d-flex justify-content-center">
         <span class="text-no-wrap">
-            <h1>Star Wars: A Quiz From Far Far Away</h1>
+            <h1 class="text-light my-4">Star Wars: A Quiz From Far Far Away</h1>
         </span>
     </header>
     
-    <div class="container bg-light col-6" id="quizBody">
-        <div class="d-flex flex-row-reverse" id="timer">Timer</div>
+    <div class="container bg-light col-6 py-3 my-3" id="quizBody">
+        <div class="d-flex flex-row text-light justify-content-between mb-3" id="highScoresLink">
+            <h6 id="highScoresLink">View High Scores</h6>
+            <h6 id="timer">Timer</h6>
+        </div>
+        <!-- <div class="d-flex flex-row-reverse text-light" id="timer">Timer</div> -->
         
         <div class="d-flex flex-row justify-content-center">
             <div id="startingInfo">
-                <h3>Test your Star Wars knowledge!</h3>
-                <p>Answer 10 questions about the Star Wars universe as quickly as possible! Be careful though: wrong answers will result in 15 seconds being subtracted from your remaining time!</p>
-                <button class="float-right" id="quizStart">Start</button>
+                <h3 class="text-light">Test your Star Wars knowledge!</h3>
+                <p class="text-light">Answer 10 questions about the Star Wars universe as quickly as possible. Be careful though: wrong answers will result in 15 seconds being subtracted from your remaining time!</p>
+                <button class="float-right btn-light" id="quizStart">Start</button>
             </div>
-            <div id="quiz" style="display: none">
-                <div id="title"></div>
-                <ul id="choices">
-                    <li id="choices1" data-value="0"></li>
-                    <li id="choices2" data-value="1"></li>
-                    <li id="choices3" data-value="2"></li>
-                    <li id="choices4" data-value="3"></li>
-                </ul>
+            <div class="container" id="quiz" style="display: none">
+                <h3 class="text-light mb-1" id="title"></h3>
+                <div class="row" id="choices">
+                        <button type="button" class="btn btn-light m-2 w-10" id="choices1" data-value="0"></button>
+                        <button type="button" class="btn btn-light m-2 w-10" id="choices2" data-value="1"></button>
+                        <button type="button" class="btn btn-light m-2 w-10" id="choices3" data-value="2"></button>
+                        <button type="button" class="btn btn-light m-2 w-10" id="choices4" data-value="3"></button>
+                </div>
             </div>
             <form id="quizResults" style="display: none">
                 <div class="form-group">
-                    <label for="scoreName">Enter your name to save your score!</label>
+                    <label class="text-light" for="scoreName">Enter your name to save your score!</label>
                     <input type="text" class="form-control" id="highscore" aria-describedby="scoreName" placeholder="Your Name">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>               
+                <button type="submit" class="btn btn-light" id="highScoreSubmit">Submit</button>               
             </form>
+            <div class="jumbotron text-light" id="highscoresPage" style="display: none">
+                <h3 class="display-3">High Scores</h3>
+                <hr class="my-4">
+                <div id="highScoresDiv"></div>
+            </div>
         </div>
     </div>
 
