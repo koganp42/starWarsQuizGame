@@ -35,11 +35,14 @@
                     <li id="choices4" data-value="3"></li>
                 </ul>
             </div>
+            <form id="quizResults" style="display: none">
+                <div class="form-group">
+                    <label for="scoreName">Enter your name to save your score!</label>
+                    <input type="text" class="form-control" id="highscore" aria-describedby="scoreName" placeholder="Your Name">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>               
+            </form>
         </div>
-        <div class="container" id="quizResults">
-
-        </div>
-
     </div>
 
     <script src="./javascript/questions.js"></script>

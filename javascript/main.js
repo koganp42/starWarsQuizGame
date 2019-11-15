@@ -2,7 +2,7 @@ let quizEl = document.querySelector("#quiz");
 let quizButton = document.querySelector("#quizStart");
 let timerEl = document.querySelector("#timer");
 let quizInfoEl = document.querySelector("#startingInfo");
-let quizResults = document.querySelector("quizResults");
+let quizResults = document.querySelector("#quizResults");
 let titleEl = document.querySelector("#title")
 let choicesEl = document.querySelector("#choices");
 let firstChoiceEl = document.querySelector("#choices1");
@@ -38,8 +38,23 @@ function quizDisplaySwitch() {
     quizEl.style.display = "block";
 }
 
+function quizDisplaySwitch2() {
+    quizInfoEl.style.display = "none";
+    quizEl.style.display = "none";
+    quizResults.style.display = "block";
+}
 
-//Need to create a function that will be called by startQuiz, which will replace the contents of quizBody with the first question and set of answer choices. Choices will be clickable, and when any of the four are clicked it will replace the html with that of the next question and so on. Will need to also check the selection against the correct answer, and if it isn't that answer, have it deduct 10 seconds from the timer. 
+
+//Need to create a function that will be called by startQuiz, which will replace the contents of quizBody with the first question and set of answer choices. Choices will be clickable, and when any of the four are clicked it will replace the html with that of the next question and so on. Will need to also check the selection against the correct answer, and if it isn't that answer, have it deduct 10 seconds from the timer.
+function quizLoop() {
+    //Assigning the key/value pairs to variables of their own with the intention of using the variables in the looping creation of html that contains each question title and its choices. Not sure if this is the right thing to do.
+    
+    
+    
+    //choicesEl.addEventListener("click", nextQuestion);
+    
+    
+} 
 
 function showQuestion() {
     titleEl.textContent = questions[currentQuestionIndex].title;
@@ -61,7 +76,15 @@ function checkAnswer(){
         currentQuestionIndex++;
         showQuestion();
     }
-    
+    if (timeLeft === 0){
+        timerEl.textContent = "";
+        clearInterval(interval);
+        quizEl.innerHTML = "<div class='container'><p>The quiz is over, padawan! Try again!</p></div>";;
+    }
+    // if (currentQuestionIndex === 10) {
+    //     quizDisplaySwitch2();
+    //     clearInterval(interval);
+    // } 
 }
 function results(){
     
