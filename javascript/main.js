@@ -1,3 +1,4 @@
+//Here I've globally declared all variables used to store the html elements I act on.
 let quizEl = document.querySelector("#quiz");
 let quizButton = document.querySelector("#quizStart");
 let timerEl = document.querySelector("#timer");
@@ -11,7 +12,7 @@ let secondChoiceEl = document.querySelector("#choices2");
 let thirdChoiceEl = document.querySelector("#choices3");
 let fourthChoiceEl = document.querySelector("#choices4");
 
-let scoreSubmitButton = document.querySelector("highScoreSubmit");
+let scoreSubmitButton = document.querySelector("#highScoreSubmit");
 let scoresPageEl = document.querySelector("#highScoresPage");
 let scoresInsertEl = document.querySelector("#highScoresDiv");
 let scoresLinkEl = document.querySelector("#highScoresLink");
@@ -21,7 +22,8 @@ let currentQuestionIndex = 0;
 let interval;
 let timeLeft = 150;
 
-//This function, triggered by a click event, will be responsible for housing the entire quiz and its html generation. Should just be the interval, giving the time allowed for the quiz, and invoke the quizLoop function. Anything else needed?
+//This function, triggered by a click event, is responsible for housing the entire quiz and its html generation. 
+
 function startQuiz(){
     interval = setInterval(countdown, 1000);
     quizLoop();
@@ -41,6 +43,7 @@ function countdown(){
     }
 };
 
+//Three display switches for the initial quiz start, after the quiz is over, and the high scores page. The last can be triggered by either clicking the View High Scores link or once the user submits their name and score.
 function quizDisplaySwitch() {
     quizInfoEl.style.display = "none";
     quizEl.style.display = "block";
@@ -59,10 +62,11 @@ function quizDisplaySwitch3() {
     scoresPageEl.style.display = "block";
 };
 
-//Need to create a function that will be called by startQuiz, which will replace the contents of quizBody with the first question and set of answer choices. Choices will be clickable, and when any of the four are clicked it will replace the html with that of the next question and so on. Will need to also check the selection against the correct answer, and if it isn't that answer, have it deduct 10 seconds from the timer.
+//I don't know why this function is necessary, but removing it breaks the quiz.
 function quizLoop() {
 } 
 
+//This function is used to cycle through the quiz questions and display them, as well as to go 
 function showQuestion() {
     if (currentQuestionIndex === 10) {
         quizDisplaySwitch2();
@@ -75,24 +79,6 @@ function showQuestion() {
     thirdChoiceEl.textContent = questions[currentQuestionIndex].choices[2];
     fourthChoiceEl.textContent = questions[currentQuestionIndex].choices[3];
     
-    debugger;
-    scoreSubmitButton.addEventListener("click", function(event) {
-        event.preventDefault();
-    
-        var scoreEntryData = {
-            entryName: userNameInput.value.trim(),
-            time: timeLeft.value
-        };
-    
-        localStorage.setItem("scoreEntryData", JSON.stringify(scoreEntryData));
-    
-        var getScoreEntryData = JSON.parse(localStorage.getItem("scoreEntryData"));
-    
-        var addScoreEntryDataHtml = document.createElement("<div>");
-        addScoreEntryDataHtml.innerText = scoreEntryData.entryName + ": " + scoreEntryData.time;
-        document.scoresInsertEl.appendChild(addScoreEntryDataHtml);
-        quizDisplaySwitch3();
-    })
 }
 
 function checkAnswer(){
@@ -107,7 +93,7 @@ function checkAnswer(){
         currentQuestionIndex++;
         showQuestion();
     }
-    if (timeLeft === 0){
+    if (timeLeft <= 0){
         timerEl.textContent = "";
         clearInterval(interval);
         quizEl.innerHTML = "<div class='container text-light mt-5'><p>The quiz is over, padawan! Try again!</p></div>";
@@ -115,23 +101,25 @@ function checkAnswer(){
      
 }
 
-// scoreSubmitButton.addEventListener("click", function(event){
-//     event.preventDefault();
+scoreSubmitButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    //make an array and loop over 
+    //let scoreEntryDataArray = [];
+    let scoreEntryData = {
+        entryName: userNameInput.value.trim(),
+        time: timeLeft
+    };
 
-//     var scoreEntryData = {
-//         entryName: userNameInput.value.trim(),
-//         time: timeLeft.value
-//     };
+    localStorage.setItem("scoreEntryData", JSON.stringify(scoreEntryData));
+    //debugger;
+    var getScoreEntryData = JSON.parse(localStorage.getItem("scoreEntryData"));
 
-//     localStorage.setItem("scoreEntryData", JSON.stringify(scoreEntryData));
-
-//     var getScoreEntryData = JSON.parse(localStorage.getItem("scoreEntryData"));
-
-//     var addScoreEntryDataHtml = document.createElement("<div>");
-//     addScoreEntryDataHtml.innerText = scoreEntryData.entryName + ": " + scoreEntryData.time;
-//     document.scoresInsertEl.appendChild(addScoreEntryDataHtml);
-//     quizDisplaySwitch3();
-// })
+    let addScoreEntryDataHtml = document.createElement("div");
+    addScoreEntryDataHtml.innerText = scoreEntryData.entryName + ": " + scoreEntryData.time;
+    scoresInsertEl.appendChild(addScoreEntryDataHtml);
+    console.log(addScoreEntryDataHtml);
+    quizDisplaySwitch3();
+})
 
 quizButton.addEventListener("click", startQuiz);
 
