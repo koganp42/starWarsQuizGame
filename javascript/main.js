@@ -21,6 +21,7 @@ let userNameInput = document.querySelector("#highScore")
 let currentQuestionIndex = 0;
 let interval;
 let timeLeft = 150;
+let scoreArray = [];
 
 //This function, triggered by a click event, is responsible for housing the entire quiz and its html generation. 
 
@@ -60,6 +61,12 @@ function quizDisplaySwitch3() {
     quizEl.style.display = "none";
     quizResults.style.display = "none";
     scoresPageEl.style.display = "block";
+    console.log(scoreArray);
+    populateScoreDivs();
+        //The code below is a remnant of when I was able to successfully create a highscore entry but could not store it.
+        //let addScoreEntryDataHtml = document.createElement("div");
+        // addScoreEntryDataHtml.innerText = getScoreArray.scoreEntryData.entryName + ": " + scoreArray.scoreEntryData.time;
+        // scoresInsertEl.appendChild(addScoreEntryDataHtml);
 };
 
 //I don't know why this function is necessary, but removing it breaks the quiz.
@@ -101,26 +108,41 @@ function checkAnswer(){
      
 }
 
+function populateScoreDivs (){
+    let scoreArray = JSON.parse(localStorage.getItem("scoreArray"));
+    for(let i = 0; i < scoreArray.length; i++) {
+        let newScoreDiv = document.createElement("div");
+        newScoreDiv.innerText = scoreArray[i].scoreEntryData.entryName + ": " + scoreArray[i].scoreEntryData.time + " seconds";
+    };
+}
+
 scoreSubmitButton.addEventListener("click", function(event) {
     event.preventDefault();
-    //make an array and loop over 
-    //let scoreEntryDataArray = [];
+    
+    //storing the user's entry as an object named scoreEntryData.
     let scoreEntryData = {
         entryName: userNameInput.value.trim(),
         time: timeLeft
     };
+    
+    let scoreArray = JSON.parse(localStorage.getItem("scoreArray"));
+    if (scoreArray === null){
+        scoreArray = [];
+        scoreArray.push(scoreEntryData);
+    } else {
+        scoreArray.push(scoreEntryData);
+    };
+    // scoreArray.push(scoreEntryData);
+    localStorage.setItem("scoreArray", JSON.stringify(scoreArray));
+    
 
-    localStorage.setItem("scoreEntryData", JSON.stringify(scoreEntryData));
-    //debugger;
-    var getScoreEntryData = JSON.parse(localStorage.getItem("scoreEntryData"));
+    //Storing the individual entry on local storage. I should probably be adding the entry to the array and storing that array, then displaying that array.
 
-    let addScoreEntryDataHtml = document.createElement("div");
-    addScoreEntryDataHtml.innerText = scoreEntryData.entryName + ": " + scoreEntryData.time;
-    scoresInsertEl.appendChild(addScoreEntryDataHtml);
-    console.log(addScoreEntryDataHtml);
     quizDisplaySwitch3();
 })
 
+
+console.log(localStorage);
 quizButton.addEventListener("click", startQuiz);
 
 firstChoiceEl.addEventListener("click", checkAnswer);
