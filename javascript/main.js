@@ -23,6 +23,7 @@ let interval;
 let timeLeft = 150;
 let scoreArray = [];
 
+
 //This function, triggered by a click event, is responsible for housing the entire quiz and its html generation. 
 
 function startQuiz(){
@@ -112,8 +113,10 @@ function populateScoreDivs (){
     let scoreArray = JSON.parse(localStorage.getItem("scoreArray"));
     for(let i = 0; i < scoreArray.length; i++) {
         let newScoreDiv = document.createElement("div");
-        newScoreDiv.innerText = scoreArray[i].scoreEntryData.entryName + ": " + scoreArray[i].scoreEntryData.time + " seconds";
+        newScoreDiv.innerText = scoreArray[i].entryName + ": " + scoreArray[i].time + " seconds";
+        scoresInsertEl.append(newScoreDiv);
     };
+    console.log(scoreArray[0].entryName);
 }
 
 scoreSubmitButton.addEventListener("click", function(event) {
